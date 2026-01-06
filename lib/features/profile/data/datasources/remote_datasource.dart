@@ -3,19 +3,19 @@ import 'dart:convert';
 import 'package:clean_architecture/features/profile/data/models/profile_model.dart';
 import 'package:http/http.dart' as http;
 
-abstract class ProfileRemoteDatasource {
+abstract class ProfileRemoteDataSource {
   Future<List<ProfileModel>> getAllUser(int page);
   Future<ProfileModel> getUser(int id);
 }
 
-class ProfileRemoteDatasourceImpl implements ProfileRemoteDatasource {
+class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   @override
   Future<List<ProfileModel>> getAllUser(int page) async {
     Uri uri = Uri.parse('https://reqres.in/api/users?page=$page');
     var response = await http.get(uri);
 
     Map<String, dynamic> dataBody = json.decode(response.body);
-    List<Map<String, dynamic>> data = dataBody['data'];
+    List<dynamic> data = dataBody['data'];
     return ProfileModel.fromJsonList(data);
   }
 
