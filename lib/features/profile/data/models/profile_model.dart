@@ -14,8 +14,7 @@ class ProfileModel extends Profile {
   }) : super(fullName: '$firstName $lastName', profileImageUrl: avatar);
 
   // Map -> ProfileModel
-  factory ProfileModel.fromJson(Map<String, dynamic> dataJson) {
-    Map<String, dynamic> data = dataJson['data'];
+  factory ProfileModel.fromJson(Map<String, dynamic> data) {
     return ProfileModel(
       id: data['id'],
       email: data['email'],
@@ -34,5 +33,13 @@ class ProfileModel extends Profile {
       'last_name': lastName,
       'avatar': avatar,
     };
+  }
+
+  // List<Map> -> List<ProfileModel>
+  static List<ProfileModel> fromJsonList(List data) {
+    if (data.isEmpty) return [];
+    return data
+        .map((singleDataProfile) => ProfileModel.fromJson(singleDataProfile))
+        .toList();
   }
 }
