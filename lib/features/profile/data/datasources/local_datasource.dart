@@ -6,10 +6,10 @@ abstract class ProfileRemoteDataSource {
   Future<ProfileModel> getUser(int id);
 }
 
-class ProfileLocalDataSourceImplementation extends ProfileRemoteDataSource {
+class ProfileLocalDataSource extends ProfileRemoteDataSource {
   final HiveInterface hive;
 
-  ProfileLocalDataSourceImplementation({required this.hive});
+  ProfileLocalDataSource({required this.hive});
 
   @override
   Future<List<ProfileModel>> getAllUser(int page) async {
