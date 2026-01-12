@@ -1,7 +1,17 @@
+import 'package:bloc/bloc.dart';
 import 'package:clean_architecture/core/routes/my_router.dart';
+import 'package:clean_architecture/features/profile/data/models/profile_model.dart';
+import 'package:clean_architecture/observer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  // initialize
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(ProfileModelAdapter());
+  Bloc.observer = MyObserver();
   runApp(const MyApp());
 }
 

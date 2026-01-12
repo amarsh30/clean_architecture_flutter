@@ -7,19 +7,17 @@ abstract class ProfileRemoteDataSource {
 }
 
 class ProfileLocalDataSource extends ProfileRemoteDataSource {
-  final HiveInterface hive;
+  final Box box;
 
-  ProfileLocalDataSource({required this.hive});
+  ProfileLocalDataSource({required this.box});
 
   @override
   Future<List<ProfileModel>> getAllUser(int page) async {
-    var box = await hive.openBox('profileBox');
     return box.get('getAllUser');
   }
 
   @override
   Future<ProfileModel> getUser(int id) async {
-    var box = await hive.openBox('profileBox');
     return box.get('getUser_$id');
   }
 }

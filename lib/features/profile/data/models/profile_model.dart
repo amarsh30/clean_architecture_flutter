@@ -1,8 +1,15 @@
 import 'package:clean_architecture/features/profile/domain/entities/profile.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+part 'profile_model.g.dart';
+
+@HiveType(typeId: 1)
 class ProfileModel extends Profile {
+  @HiveField(4)
   final String firstName;
+  @HiveField(5)
   final String lastName;
+  @HiveField(6)
   final String avatar;
 
   const ProfileModel({
