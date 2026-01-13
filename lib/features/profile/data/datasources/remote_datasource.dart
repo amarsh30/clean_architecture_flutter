@@ -10,6 +10,11 @@ abstract class ProfileRemoteDataSource {
 }
 
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
+  final http.Client client;
+
+  // REAL CLASS / FAKE CLASS
+  ProfileRemoteDataSourceImpl({required this.client});
+
   @override
   Future<List<ProfileModel>> getAllUser(int page) async {
     Uri uri = Uri.parse('https://reqres.in/api/users?page=$page');

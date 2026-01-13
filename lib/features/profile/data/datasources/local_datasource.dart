@@ -1,15 +1,15 @@
 import 'package:clean_architecture/features/profile/data/models/profile_model.dart';
 import 'package:hive/hive.dart';
 
-abstract class ProfileRemoteDataSource {
+abstract class ProfileLocalDataSource {
   Future<List<ProfileModel>> getAllUser(int page);
   Future<ProfileModel> getUser(int id);
 }
 
-class ProfileLocalDataSource extends ProfileRemoteDataSource {
+class ProfileLocalDataSourceImpl extends ProfileLocalDataSource {
   final Box box;
 
-  ProfileLocalDataSource({required this.box});
+  ProfileLocalDataSourceImpl({required this.box});
 
   @override
   Future<List<ProfileModel>> getAllUser(int page) async {
