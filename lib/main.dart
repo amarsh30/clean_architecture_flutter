@@ -1,12 +1,10 @@
-import 'package:bloc/bloc.dart';
 import 'package:clean_architecture/core/routes/my_router.dart';
-import 'package:clean_architecture/features/profile/data/models/profile_model.dart';
+import 'package:clean_architecture/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:clean_architecture/injection.dart';
 import 'package:clean_architecture/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'injection.dart';
 
 void main() async {
   // initialize
@@ -24,6 +22,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: MyRouter().router);
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => myinjection<ProfileBloc>()),
+      ],
+      child: MaterialApp.router(routerConfig: MyRouter().router),
+    );
   }
 }
